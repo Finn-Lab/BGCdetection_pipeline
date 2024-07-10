@@ -1,4 +1,0 @@
-task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
-2	5d/411f0f	31019439	BUILD_GBK (244)	COMPLETED	0	2024-07-10 10:18:51.165	1m 49s	5.7s	4.4%	35.1 MB	104.7 MB	4.3 MB	289 B
-1	2c/e3fbab	31019444	BUILD_GBK (21)	COMPLETED	0	2024-07-10 10:18:51.349	1m 49s	5.9s	3.7%	36 MB	104.6 MB	4.7 MB	58.9 KB
-3	9a/0dba49	31020097	ANTISMASH (21)	COMPLETED	0	2024-07-10 10:20:41.103	29.1s	15.7s	69.4%	200.5 MB	845.2 MB	480.4 MB	2.1 MB
