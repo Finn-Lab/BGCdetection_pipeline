@@ -1,0 +1,154 @@
+Jul-09 15:45:37.060 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf --input /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/test/files/dummy_input.csv --outdir /homes/fragoso/Downloads/nf_test -profile ebi
+Jul-09 15:45:37.804 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.04.2
+Jul-09 15:45:37.860 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/homes/fragoso/.nextflow/plugins; core-plugins: nf-amazon@2.5.2,nf-azure@1.6.0,nf-cloudcache@0.4.1,nf-codecommit@0.2.0,nf-console@1.1.3,nf-ga4gh@1.3.0,nf-google@1.13.2,nf-tower@1.9.1,nf-wave@1.4.2
+Jul-09 15:45:37.951 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jul-09 15:45:37.954 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jul-09 15:45:37.964 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.10.0 in 'deployment' mode
+Jul-09 15:45:38.015 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jul-09 15:45:38.052 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/nextflow.config
+Jul-09 15:45:38.058 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/nextflow.config
+Jul-09 15:45:38.160 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /homes/fragoso/.nextflow/secrets/store.json
+Jul-09 15:45:38.168 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@de18f63] - activable => nextflow.secret.LocalSecretsProvider@de18f63
+Jul-09 15:45:38.226 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `ebi`
+Jul-09 15:45:41.751 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [debug, test, ebi]
+Jul-09 15:45:41.858 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Jul-09 15:45:41.896 [main] DEBUG nextflow.cli.CmdRun - Launching `main.nf` [dreamy_bardeen] DSL2 - revision: 62cd06893b
+Jul-09 15:45:41.902 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins declared=[nf-validation]
+Jul-09 15:45:41.922 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jul-09 15:45:41.922 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[nf-validation]
+Jul-09 15:45:41.922 [main] DEBUG nextflow.plugin.PluginUpdater - Installing plugin nf-validation version: latest
+Jul-09 15:45:43.077 [main] INFO  org.pf4j.AbstractPluginManager - Plugin 'nf-validation@1.1.3' resolved
+Jul-09 15:45:43.077 [main] INFO  org.pf4j.AbstractPluginManager - Start plugin 'nf-validation@1.1.3'
+Jul-09 15:45:43.131 [main] DEBUG nextflow.plugin.BasePlugin - Plugin started nf-validation@1.1.3
+Jul-09 15:45:43.293 [main] DEBUG nextflow.Session - Session UUID: 963949a2-8f2e-4c33-bed1-48b63528c807
+Jul-09 15:45:43.296 [main] DEBUG nextflow.Session - Run name: dreamy_bardeen
+Jul-09 15:45:43.320 [main] DEBUG nextflow.Session - Executor pool size: 2
+Jul-09 15:45:43.355 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Jul-09 15:45:43.374 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Jul-09 15:45:43.422 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 24.04.2 build 5914
+  Created: 29-05-2024 06:19 UTC (07:19 BST)
+  System: Linux 4.18.0-348.23.1.el8_5.x86_64
+  Runtime: Groovy 4.0.21 on OpenJDK 64-Bit Server VM 11.0.1+13-LTS
+  Encoding: UTF-8 (UTF-8)
+  Process: 1858010@hl-codon-22-04.ebi.ac.uk [10.36.16.98]
+  CPUs: 1 - Mem: 376.6 GB (12.3 GB) - Swap: 0 (0)
+Jul-09 15:45:43.573 [main] DEBUG nextflow.Session - Work-dir: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work [nfs]
+Jul-09 15:45:43.696 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jul-09 15:45:43.715 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Jul-09 15:45:43.846 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Jul-09 15:45:43.872 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 2; maxThreads: 1000
+Jul-09 15:45:44.187 [main] DEBUG nextflow.Session - Session start
+Jul-09 15:45:44.190 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /homes/fragoso/Downloads/nf_test/pipeline_info/execution_trace_2024-07-09_15-45-41.txt
+Jul-09 15:45:44.723 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jul-09 15:45:46.302 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:BUILD_GBK` matches process BUILD_GBK
+Jul-09 15:45:46.356 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-09 15:45:46.365 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-09 15:45:46.400 [main] DEBUG nextflow.executor.Executor - [warm up] executor > slurm
+Jul-09 15:45:46.419 [main] DEBUG n.processor.TaskPollingMonitor - Creating task monitor for executor 'slurm' > capacity: 200; pollInterval: 10s; dumpInterval: 5m 
+Jul-09 15:45:46.423 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: slurm)
+Jul-09 15:45:46.424 [main] DEBUG n.processor.TaskPollingMonitor - Creating submit rate limit of 10 submissions per 1 seconds
+Jul-09 15:45:46.464 [main] DEBUG n.executor.AbstractGridExecutor - Creating executor 'slurm' > queue-stat-interval: 1m
+Jul-09 15:45:46.609 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:ANTISMASH` matches process ANTISMASH
+Jul-09 15:45:46.614 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-09 15:45:46.614 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-09 15:45:46.646 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:INTERPROSCAN` matches process INTERPROSCAN
+Jul-09 15:45:46.651 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-09 15:45:46.652 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-09 15:45:46.694 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:SANNTIS` matches process SANNTIS
+Jul-09 15:45:46.697 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-09 15:45:46.698 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-09 15:45:46.750 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_low` matches labels `process_low` for process with name GECCO_RUN
+Jul-09 15:45:46.751 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:GECCO_RUN` matches process GECCO_RUN
+Jul-09 15:45:46.754 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-09 15:45:46.754 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-09 15:45:46.762 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: SANNTIS, ANTISMASH, BUILD_GBK, GECCO_RUN, INTERPROSCAN
+Jul-09 15:45:46.805 [main] WARN  nextflow.Session - There's no process matching config selector: CUSTOM_DUMPSOFTWAREVERSIONS
+Jul-09 15:45:46.880 [main] DEBUG nextflow.Session - Igniting dataflow network (6)
+Jul-09 15:45:46.910 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > BUILD_GBK
+Jul-09 15:45:46.910 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > ANTISMASH
+Jul-09 15:45:46.910 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > INTERPROSCAN
+Jul-09 15:45:46.915 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > SANNTIS
+Jul-09 15:45:46.949 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > GECCO_RUN
+Jul-09 15:45:46.949 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_d0e20a090faa4dd8: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/main.nf
+  Script_403b9be2998afb53: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/./modules/local/interproscan.nf
+  Script_ad27ca530da6f311: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/./modules/local/antismash.nf
+  Script_06ba7ffc2f9e89d0: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/./modules/local/sanntis.nf
+  Script_9c30892f428b2e3e: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/./modules/local/build_gbk.nf
+  Script_67cb332a6b82b222: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/./modules/nf-core/gecco/run/main.nf
+Jul-09 15:45:46.949 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Jul-09 15:45:46.949 [main] DEBUG nextflow.Session - Session await
+Jul-09 15:45:47.869 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process BUILD_GBK (21) > jobId: 30486670; workDir: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work/08/be94ceba93c50d49c7f29d0be98037
+Jul-09 15:45:47.873 [Task submitter] INFO  nextflow.Session - [08/be94ce] Submitted process > BUILD_GBK (21)
+Jul-09 15:45:56.483 [Task monitor] DEBUG n.executor.AbstractGridExecutor - Executor 'slurm' fetching queue global status
+Jul-09 15:46:36.504 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[jobId: 30486670; id: 1; name: BUILD_GBK (21); status: COMPLETED; exit: 0; error: -; workDir: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work/08/be94ceba93c50d49c7f29d0be98037 started: 1720536357453; exited: 2024-07-09T14:46:04.953448Z; ]
+Jul-09 15:46:36.505 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Jul-09 15:46:36.714 [TaskFinalizer-1] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Jul-09 15:46:36.751 [Actor Thread 6] DEBUG nextflow.container.SingularityCache - Singularity found local store for image=https://depot.galaxyproject.org/singularity/gecco:0.9.8--pyhdfd78af_0; path=/hps/nobackup/rdf/metagenomics/service-team/singularity-cache/depot.galaxyproject.org-singularity-gecco-0.9.8--pyhdfd78af_0.img
+Jul-09 15:46:36.826 [Actor Thread 11] DEBUG nextflow.container.SingularityCache - Singularity found local store for image=docker://quay.io/microbiome-informatics/antismash:7.1.0.1_2; path=/hps/nobackup/rdf/metagenomics/service-team/singularity-cache/quay.io-microbiome-informatics-antismash-7.1.0.1_2.img
+Jul-09 15:46:36.903 [Actor Thread 10] DEBUG nextflow.container.SingularityCache - Singularity found local store for image=docker://quay.io/microbiome-informatics/genomes-pipeline.ips:5.62-94.0; path=/hps/nobackup/rdf/metagenomics/service-team/singularity-cache/quay.io-microbiome-informatics-genomes-pipeline.ips-5.62-94.0.img
+Jul-09 15:46:37.467 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process ANTISMASH (21) > jobId: 30486760; workDir: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work/ce/cedebc6f9f65d63fbf55c532c11c35
+Jul-09 15:46:37.467 [Task submitter] INFO  nextflow.Session - [ce/cedebc] Submitted process > ANTISMASH (21)
+Jul-09 15:46:37.598 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process GECCO_RUN (21) > jobId: 30486762; workDir: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work/dc/cd370c11695f7628b0999a5ec12cee
+Jul-09 15:46:37.598 [Task submitter] INFO  nextflow.Session - [dc/cd370c] Submitted process > GECCO_RUN (21)
+Jul-09 15:46:37.875 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process INTERPROSCAN (21) > jobId: 30486763; workDir: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work/b4/7fd957a4640c27f8f9643a7270ebf3
+Jul-09 15:46:37.875 [Task submitter] INFO  nextflow.Session - [b4/7fd957] Submitted process > INTERPROSCAN (21)
+Jul-09 15:47:06.482 [Task monitor] DEBUG n.executor.AbstractGridExecutor - Executor 'slurm' fetching queue global status
+Jul-09 15:47:16.484 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[jobId: 30486762; id: 3; name: GECCO_RUN (21); status: COMPLETED; exit: 1; error: -; workDir: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work/dc/cd370c11695f7628b0999a5ec12cee started: 1720536406485; exited: 2024-07-09T14:46:55.9677Z; ]
+Jul-09 15:47:16.505 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=GECCO_RUN (21); work-dir=/hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work/dc/cd370c11695f7628b0999a5ec12cee
+  error [nextflow.exception.ProcessFailedException]: Process `GECCO_RUN (21)` terminated with an error exit status (1)
+Jul-09 15:47:16.634 [TaskFinalizer-2] ERROR nextflow.processor.TaskProcessor - Error executing process > 'GECCO_RUN (21)'
+
+Caused by:
+  Process `GECCO_RUN (21)` terminated with an error exit status (1)
+
+
+Command executed:
+
+  gecco \
+      run \
+       \
+      -j 1 \
+      -o ./ \
+      -g 21.gbk \
+       \
+  
+  
+  touch 21.clusters.gff
+  touch 21.clusters.testt
+  gecco convert clusters -i ./ --format gff
+  gzip -c 21.clusters.gff > touch 21.clusters.gff.gz
+
+Command exit status:
+  1
+
+Command output:
+  (empty)
+
+Command error:
+  ! Contig 'BGC0001472' does not contain enough proteins (16) for sliding window of size 20, padding with 4 proteins
+  ✔ Found 1 biosynthetic gene cluster
+  
+  ✔ Converted 1 TSV file to GFF format
+  
+  gzip: 21.clusters.gff.gz: No such file or directory
+
+Work dir:
+  /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work/dc/cd370c11695f7628b0999a5ec12cee
+
+Tip: view the complete command output by changing to the process work dir and entering the command `cat .command.out`
+Jul-09 15:47:16.662 [TaskFinalizer-2] INFO  nextflow.Session - Execution cancelled -- Finishing pending tasks before exit
+Jul-09 15:47:16.765 [main] DEBUG nextflow.Session - Session await > all processes finished
+Jul-09 15:47:56.802 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[jobId: 30486760; id: 2; name: ANTISMASH (21); status: COMPLETED; exit: 0; error: -; workDir: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work/ce/cedebc6f9f65d63fbf55c532c11c35 started: 1720536476770; exited: 2024-07-09T14:47:44.951559Z; ]
+Jul-09 15:48:06.767 [Task monitor] DEBUG n.executor.AbstractGridExecutor - Executor 'slurm' fetching queue global status
+Jul-09 15:49:06.768 [Task monitor] DEBUG n.executor.AbstractGridExecutor - Executor 'slurm' fetching queue global status
+Jul-09 15:50:02.898 [SIGINT handler] DEBUG nextflow.Session - Session aborted -- Cause: SIGINT
+Jul-09 15:50:02.958 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: slurm) - terminating tasks monitor poll loop
+Jul-09 15:50:02.958 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jul-09 15:50:02.971 [main] WARN  n.processor.TaskPollingMonitor - Killing running tasks (1)
+Jul-09 15:50:03.205 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=2; failedCount=1; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=1; succeedDuration=22.2s; failedDuration=30s; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=2; peakCpus=2; peakMemory=24 GB; ]
+Jul-09 15:50:03.205 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+Jul-09 15:50:03.211 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+Jul-09 15:50:03.983 [SIGINT handler] INFO  nextflow.Session - Adieu

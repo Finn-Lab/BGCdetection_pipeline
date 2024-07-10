@@ -1,0 +1,66 @@
+Jul-09 15:04:44.531 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf --input /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/test/files/dummy_input.csv --outdir /homes/fragoso/Downloads/nf_test -profile ebi
+Jul-09 15:04:45.281 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.04.2
+Jul-09 15:04:45.369 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/homes/fragoso/.nextflow/plugins; core-plugins: nf-amazon@2.5.2,nf-azure@1.6.0,nf-cloudcache@0.4.1,nf-codecommit@0.2.0,nf-console@1.1.3,nf-ga4gh@1.3.0,nf-google@1.13.2,nf-tower@1.9.1,nf-wave@1.4.2
+Jul-09 15:04:45.437 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jul-09 15:04:45.442 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jul-09 15:04:45.448 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.10.0 in 'deployment' mode
+Jul-09 15:04:45.518 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jul-09 15:04:45.592 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/nextflow.config
+Jul-09 15:04:45.595 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/nextflow.config
+Jul-09 15:04:45.683 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /homes/fragoso/.nextflow/secrets/store.json
+Jul-09 15:04:45.691 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@e344ad3] - activable => nextflow.secret.LocalSecretsProvider@e344ad3
+Jul-09 15:04:45.763 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `ebi`
+Jul-09 15:04:49.572 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [debug, test, ebi]
+Jul-09 15:04:49.658 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Jul-09 15:04:49.700 [main] DEBUG nextflow.cli.CmdRun - Launching `main.nf` [nice_cori] DSL2 - revision: 60c6958150
+Jul-09 15:04:49.706 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins declared=[nf-validation]
+Jul-09 15:04:49.708 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jul-09 15:04:49.717 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[nf-validation]
+Jul-09 15:04:49.718 [main] DEBUG nextflow.plugin.PluginUpdater - Installing plugin nf-validation version: latest
+Jul-09 15:04:50.892 [main] INFO  org.pf4j.AbstractPluginManager - Plugin 'nf-validation@1.1.3' resolved
+Jul-09 15:04:50.893 [main] INFO  org.pf4j.AbstractPluginManager - Start plugin 'nf-validation@1.1.3'
+Jul-09 15:04:50.908 [main] DEBUG nextflow.plugin.BasePlugin - Plugin started nf-validation@1.1.3
+Jul-09 15:04:51.123 [main] DEBUG nextflow.Session - Session UUID: cc16d394-5970-4716-aa0c-9cd60313231b
+Jul-09 15:04:51.123 [main] DEBUG nextflow.Session - Run name: nice_cori
+Jul-09 15:04:51.123 [main] DEBUG nextflow.Session - Executor pool size: 2
+Jul-09 15:04:51.151 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Jul-09 15:04:51.181 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Jul-09 15:04:51.312 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 24.04.2 build 5914
+  Created: 29-05-2024 06:19 UTC (07:19 BST)
+  System: Linux 4.18.0-348.23.1.el8_5.x86_64
+  Runtime: Groovy 4.0.21 on OpenJDK 64-Bit Server VM 11.0.1+13-LTS
+  Encoding: UTF-8 (UTF-8)
+  Process: 1834746@hl-codon-22-04.ebi.ac.uk [10.36.16.98]
+  CPUs: 1 - Mem: 376.6 GB (15.6 GB) - Swap: 0 (0)
+Jul-09 15:04:51.500 [main] DEBUG nextflow.Session - Work-dir: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work [nfs]
+Jul-09 15:04:51.659 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jul-09 15:04:51.685 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Jul-09 15:04:51.861 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Jul-09 15:04:51.883 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 2; maxThreads: 1000
+Jul-09 15:04:52.401 [main] DEBUG nextflow.Session - Session start
+Jul-09 15:04:52.404 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /homes/fragoso/Downloads/nf_test/pipeline_info/execution_trace_2024-07-09_15-04-49.txt
+Jul-09 15:04:52.986 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jul-09 15:04:54.350 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_9beb3959443edd4a: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/./modules/local/build_gbk.nf
+  Script_25fe518123dccd2a: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/./modules/local/antismash.nf
+  Script_480ee21e9c5e7e54: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/./modules/local/interproscan.nf
+  Script_ecafd21fd8c03168: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/main.nf
+  Script_46e34a5d348fa413: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/./modules/local/sanntis.nf
+Jul-09 15:04:54.351 [main] DEBUG nextflow.Session - Session aborted -- Cause: Can't find a matching module file for include: ../modules/nf-core/gecco/run/main
+Jul-09 15:04:54.387 [main] ERROR nextflow.cli.Launcher - Can't find a matching module file for include: ../modules/nf-core/gecco/run/main
+java.nio.file.NoSuchFileException: Can't find a matching module file for include: ../modules/nf-core/gecco/run/main
+	at nextflow.script.IncludeDef.realModulePath(IncludeDef.groovy:182)
+	at nextflow.script.IncludeDef.load0(IncludeDef.groovy:110)
+	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+	at Script_ecafd21fd8c03168.runScript(Script_ecafd21fd8c03168:20)
+	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+	at nextflow.script.BaseScript.run0(BaseScript.groovy:159)
+	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+	at nextflow.script.BaseScript.run(BaseScript.groovy:209)
+	at nextflow.script.ScriptParser.runScript(ScriptParser.groovy:236)
+	at nextflow.script.ScriptRunner.run(ScriptRunner.groovy:243)
+	at nextflow.script.ScriptRunner.execute(ScriptRunner.groovy:138)
+	at nextflow.cli.CmdRun.run(CmdRun.groovy:372)
+	at nextflow.cli.Launcher.run(Launcher.groovy:503)
+	at nextflow.cli.Launcher.main(Launcher.groovy:657)
