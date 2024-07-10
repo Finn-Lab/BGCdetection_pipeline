@@ -24,8 +24,8 @@ This repository contains a Nextflow pipeline for detecting Biosynthetic Gene Clu
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/BGC-detection-pipeline.git
-cd BGC-detection-pipeline
+git clone https://github.com/Finn-Lab/BGCdetection_pipeline.git
+cd BGCdetection_pipeline
 ```
 
 ## Usage
