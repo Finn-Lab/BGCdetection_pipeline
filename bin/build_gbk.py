@@ -57,7 +57,7 @@ def main(args=None):
         dest="out_gbk",
         default=None,
         type=str,
-        help="output genebank format file",
+        help="output genebank file",
         metavar="FILE",
         required=True,
     )
@@ -66,7 +66,16 @@ def main(args=None):
         dest="out_faa",
         default=None,
         type=str,
-        help="output genebank format file",
+        help="output faa file",
+        metavar="FILE",
+        required=True,
+    )
+    parser.add_argument(
+        "-b",
+        dest="base_filesystem",
+        default='DEFAULT',
+        type=str,
+        help="base directory to look in the file system. This is for test and debug of pipeline",
         metavar="FILE",
         required=True,
     )
@@ -78,7 +87,7 @@ def main(args=None):
     ## Find files
  
     
-    RESULTS_BASE_DIRS = ["/nfs/public/services/metagenomics/results","/nfs/production/rdf/metagenomics/results/"]
+    RESULTS_BASE_DIRS = ["/"] if args.base_filesystem !='DEFAULT' else ["/nfs/public/services/metagenomics/results","/nfs/production/rdf/metagenomics/results/"]
     # RESULTS_BASE_DIRS = ["/hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/test/files/"]
     # """ PROCESS WITHIN FILESYSTEM """
     for RESULTS_BASE_DIR in RESULTS_BASE_DIRS:

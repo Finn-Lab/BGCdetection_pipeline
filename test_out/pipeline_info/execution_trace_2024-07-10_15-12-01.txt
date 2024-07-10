@@ -1,0 +1,4 @@
+task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
+1	7e/f52da9	3696846	BUILD_GBK (2414)	FAILED	1	2024-07-10 15:12:10.216	1.8s	1.7s	-	-	-	-	-
+2	b5/e4bb7d	3697001	BUILD_GBK (21)	COMPLETED	0	2024-07-10 15:12:12.116	922ms	547ms	44.9%	10.9 MB	46.1 MB	4.7 MB	66.5 KB
+3	ee/283f42	-	ANTISMASH (21)	FAILED	-	-	-	-	-	-	-	-	-
