@@ -1,123 +1,101 @@
-Jul-09 15:44:14.489 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf --input /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/test/files/dummy_input.csv --outdir /homes/fragoso/Downloads/nf_test -profile ebi
-Jul-09 15:44:15.138 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.04.2
-Jul-09 15:44:15.174 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/homes/fragoso/.nextflow/plugins; core-plugins: nf-amazon@2.5.2,nf-azure@1.6.0,nf-cloudcache@0.4.1,nf-codecommit@0.2.0,nf-console@1.1.3,nf-ga4gh@1.3.0,nf-google@1.13.2,nf-tower@1.9.1,nf-wave@1.4.2
-Jul-09 15:44:15.219 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
-Jul-09 15:44:15.247 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
-Jul-09 15:44:15.251 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.10.0 in 'deployment' mode
-Jul-09 15:44:15.304 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
-Jul-09 15:44:15.354 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/nextflow.config
-Jul-09 15:44:15.357 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/nextflow.config
-Jul-09 15:44:15.427 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /homes/fragoso/.nextflow/secrets/store.json
-Jul-09 15:44:15.445 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@de18f63] - activable => nextflow.secret.LocalSecretsProvider@de18f63
-Jul-09 15:44:15.493 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `ebi`
-Jul-09 15:44:19.031 [main] ERROR nextflow.cli.Launcher - Unable to parse config file: '/hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/nextflow.config'
-
-  Compile failed for sources FixedSetSources[name='/groovy/script/Script0A06461114D0F93A0E28DE2FB1755562']. Cause: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
-  /groovy/script/Script0A06461114D0F93A0E28DE2FB1755562: 13: Unexpected input: '{' @ line 13, column 9.
-     process {
-             ^
-  
-  1 error
-
-ch.artecat.grengine.except.CompileException: Compile failed for sources FixedSetSources[name='/groovy/script/Script0A06461114D0F93A0E28DE2FB1755562']. Cause: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
-/groovy/script/Script0A06461114D0F93A0E28DE2FB1755562: 13: Unexpected input: '{' @ line 13, column 9.
-   process {
-           ^
-
-1 error
-
-	at ch.artecat.grengine.code.groovy.DefaultGroovyCompiler.compile(DefaultGroovyCompiler.java:260)
-	at ch.artecat.grengine.load.DefaultTopCodeCache.getUpToDateCode(DefaultTopCodeCache.java:80)
-	at ch.artecat.grengine.load.LayeredClassLoader.getTopLoader(LayeredClassLoader.java:251)
-	at ch.artecat.grengine.load.LayeredClassLoader.loadMainClass(LayeredClassLoader.java:202)
-	at ch.artecat.grengine.engine.LayeredEngine.loadMainClass(LayeredEngine.java:198)
-	at ch.artecat.grengine.Grengine.loadMainClass(Grengine.java:679)
-	at ch.artecat.grengine.BaseGrengine.load(BaseGrengine.java:538)
-	at ch.artecat.grengine.BaseGrengine.load(BaseGrengine.java:387)
-	at org.codehaus.groovy.vmplugin.v8.IndyInterface.selectMethod(IndyInterface.java:355)
-	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
-	at nextflow.config.ConfigBase.includeConfig(ConfigBase.groovy:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
-	at org.codehaus.groovy.vmplugin.v8.IndyInterface.selectMethod(IndyInterface.java:355)
-	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
-	at nextflow.config.ConfigParser$_parse_closure5.doCall(ConfigParser.groovy:457)
-	at jdk.internal.reflect.GeneratedMethodAccessor17.invoke(Unknown Source)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
-	at org.codehaus.groovy.runtime.metaclass.ClosureMetaMethod.invoke(ClosureMetaMethod.java:88)
-	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1140)
-	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
-	at groovy.lang.DelegatingMetaClass.invokeMethod(DelegatingMetaClass.java:165)
-	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
-	at _nf_config_a2b88e4a.run(_nf_config_a2b88e4a:119)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
-	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
-	at nextflow.config.ConfigParser$_parse_closure5.doCall(ConfigParser.groovy:457)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
-	at org.codehaus.groovy.runtime.metaclass.ClosureMetaMethod.invoke(ClosureMetaMethod.java:88)
-	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1140)
-	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
-	at groovy.lang.DelegatingMetaClass.invokeMethod(DelegatingMetaClass.java:165)
-	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
-	at nextflow.config.ConfigParser.parse(ConfigParser.groovy:486)
-	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
-	at nextflow.config.ConfigParser.parse(ConfigParser.groovy:312)
-	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
-	at nextflow.config.ConfigBuilder.parse0(ConfigBuilder.groovy:439)
-	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
-	at nextflow.config.ConfigBuilder.merge0(ConfigBuilder.groovy:425)
-	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
-	at nextflow.config.ConfigBuilder.buildConfig0(ConfigBuilder.groovy:375)
-	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
-	at nextflow.config.ConfigBuilder.buildGivenFiles(ConfigBuilder.groovy:320)
-	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
-	at nextflow.config.ConfigBuilder.buildConfigObject(ConfigBuilder.groovy:814)
-	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
-	at nextflow.config.ConfigBuilder.build(ConfigBuilder.groovy:827)
-	at nextflow.cli.CmdRun.run(CmdRun.groovy:328)
-	at nextflow.cli.Launcher.run(Launcher.groovy:503)
-	at nextflow.cli.Launcher.main(Launcher.groovy:657)
-Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
-/groovy/script/Script0A06461114D0F93A0E28DE2FB1755562: 13: Unexpected input: '{' @ line 13, column 9.
-   process {
-           ^
-
-1 error
-
-	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:292)
-	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:148)
-	at org.apache.groovy.parser.antlr4.AstBuilder.collectSyntaxError(AstBuilder.java:4753)
-	at org.apache.groovy.parser.antlr4.AstBuilder.access$100(AstBuilder.java:169)
-	at org.apache.groovy.parser.antlr4.AstBuilder$3.syntaxError(AstBuilder.java:4764)
-	at groovyjarjarantlr4.v4.runtime.ProxyErrorListener.syntaxError(ProxyErrorListener.java:44)
-	at groovyjarjarantlr4.v4.runtime.Parser.notifyErrorListeners(Parser.java:543)
-	at groovyjarjarantlr4.v4.runtime.DefaultErrorStrategy.notifyErrorListeners(DefaultErrorStrategy.java:154)
-	at org.apache.groovy.parser.antlr4.internal.DescriptiveErrorStrategy.reportInputMismatch(DescriptiveErrorStrategy.java:104)
-	at org.apache.groovy.parser.antlr4.internal.DescriptiveErrorStrategy.recover(DescriptiveErrorStrategy.java:55)
-	at org.apache.groovy.parser.antlr4.internal.DescriptiveErrorStrategy.recoverInline(DescriptiveErrorStrategy.java:68)
-	at groovyjarjarantlr4.v4.runtime.Parser.match(Parser.java:213)
-	at org.apache.groovy.parser.antlr4.GroovyParser.compilationUnit(GroovyParser.java:368)
-	at org.apache.groovy.parser.antlr4.AstBuilder.buildCST(AstBuilder.java:243)
-	at org.apache.groovy.parser.antlr4.AstBuilder.buildCST(AstBuilder.java:221)
-	at org.apache.groovy.parser.antlr4.AstBuilder.buildAST(AstBuilder.java:262)
-	at org.apache.groovy.parser.antlr4.Antlr4ParserPlugin.buildAST(Antlr4ParserPlugin.java:58)
-	at org.codehaus.groovy.control.SourceUnit.buildAST(SourceUnit.java:256)
-	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)
-	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801)
-	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:658)
-	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:663)
-	at ch.artecat.grengine.code.groovy.DefaultGroovyCompiler.compile(DefaultGroovyCompiler.java:229)
-	... 63 common frames omitted
+Jul-10 10:24:55.633 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf --input /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/test/files/dummy_input.csv --outdir /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/outdir_test -profile ebi
+Jul-10 10:24:56.264 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.04.2
+Jul-10 10:24:56.288 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/homes/fragoso/.nextflow/plugins; core-plugins: nf-amazon@2.5.2,nf-azure@1.6.0,nf-cloudcache@0.4.1,nf-codecommit@0.2.0,nf-console@1.1.3,nf-ga4gh@1.3.0,nf-google@1.13.2,nf-tower@1.9.1,nf-wave@1.4.2
+Jul-10 10:24:56.341 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jul-10 10:24:56.348 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jul-10 10:24:56.351 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.10.0 in 'deployment' mode
+Jul-10 10:24:56.388 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jul-10 10:24:56.429 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/nextflow.config
+Jul-10 10:24:56.432 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/nextflow.config
+Jul-10 10:24:56.491 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /homes/fragoso/.nextflow/secrets/store.json
+Jul-10 10:24:56.498 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@de18f63] - activable => nextflow.secret.LocalSecretsProvider@de18f63
+Jul-10 10:24:56.538 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `ebi`
+Jul-10 10:24:59.708 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [debug, test, ebi]
+Jul-10 10:24:59.868 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Jul-10 10:24:59.889 [main] DEBUG nextflow.cli.CmdRun - Launching `main.nf` [big_mahavira] DSL2 - revision: 7a6dd056ee
+Jul-10 10:24:59.891 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins declared=[nf-validation]
+Jul-10 10:24:59.892 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jul-10 10:24:59.892 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[nf-validation]
+Jul-10 10:24:59.893 [main] DEBUG nextflow.plugin.PluginUpdater - Installing plugin nf-validation version: latest
+Jul-10 10:25:01.397 [main] INFO  org.pf4j.AbstractPluginManager - Plugin 'nf-validation@1.1.3' resolved
+Jul-10 10:25:01.397 [main] INFO  org.pf4j.AbstractPluginManager - Start plugin 'nf-validation@1.1.3'
+Jul-10 10:25:01.476 [main] DEBUG nextflow.plugin.BasePlugin - Plugin started nf-validation@1.1.3
+Jul-10 10:25:01.611 [main] DEBUG nextflow.Session - Session UUID: cdb2eb4d-8743-4695-8c0a-e869fc85745f
+Jul-10 10:25:01.614 [main] DEBUG nextflow.Session - Run name: big_mahavira
+Jul-10 10:25:01.615 [main] DEBUG nextflow.Session - Executor pool size: 2
+Jul-10 10:25:01.625 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Jul-10 10:25:01.630 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Jul-10 10:25:01.739 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 24.04.2 build 5914
+  Created: 29-05-2024 06:19 UTC (07:19 BST)
+  System: Linux 4.18.0-348.23.1.el8_5.x86_64
+  Runtime: Groovy 4.0.21 on OpenJDK 64-Bit Server VM 11.0.1+13-LTS
+  Encoding: UTF-8 (UTF-8)
+  Process: 1967349@hl-codon-35-02.ebi.ac.uk [10.36.16.163]
+  CPUs: 1 - Mem: 376.6 GB (12.8 GB) - Swap: 0 (0)
+Jul-10 10:25:01.897 [main] DEBUG nextflow.Session - Work-dir: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work [nfs]
+Jul-10 10:25:02.007 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jul-10 10:25:02.032 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Jul-10 10:25:02.126 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Jul-10 10:25:02.155 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 2; maxThreads: 1000
+Jul-10 10:25:02.558 [main] DEBUG nextflow.Session - Session start
+Jul-10 10:25:02.564 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/outdir_test/pipeline_info/execution_trace_2024-07-10_10-24-59.txt
+Jul-10 10:25:02.943 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jul-10 10:25:04.539 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:BUILD_GBK` matches process BUILD_GBK
+Jul-10 10:25:04.574 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-10 10:25:04.584 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-10 10:25:04.607 [main] DEBUG nextflow.executor.Executor - [warm up] executor > slurm
+Jul-10 10:25:04.616 [main] DEBUG n.processor.TaskPollingMonitor - Creating task monitor for executor 'slurm' > capacity: 200; pollInterval: 10s; dumpInterval: 5m 
+Jul-10 10:25:04.631 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: slurm)
+Jul-10 10:25:04.632 [main] DEBUG n.processor.TaskPollingMonitor - Creating submit rate limit of 10 submissions per 1 seconds
+Jul-10 10:25:04.654 [main] DEBUG n.executor.AbstractGridExecutor - Creating executor 'slurm' > queue-stat-interval: 1m
+Jul-10 10:25:04.785 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:ANTISMASH` matches process ANTISMASH
+Jul-10 10:25:04.787 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-10 10:25:04.787 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-10 10:25:04.793 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: SANNTIS, ANTISMASH, BUILD_GBK, GECCO_RUN, INTERPROSCAN
+Jul-10 10:25:04.803 [main] DEBUG nextflow.Session - Igniting dataflow network (3)
+Jul-10 10:25:04.825 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > BUILD_GBK
+Jul-10 10:25:04.825 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > ANTISMASH
+Jul-10 10:25:04.826 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_e8073e810ae09ccc: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/./modules/nf-core/gecco/run/main.nf
+  Script_3acfb6d6c7581220: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/./modules/local/build_gbk.nf
+  Script_ad27ca530da6f311: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/./modules/local/antismash.nf
+  Script_5463129dd96d444b: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/./modules/local/interproscan.nf
+  Script_06ba7ffc2f9e89d0: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/./modules/local/sanntis.nf
+  Script_9268eef4f0ca86c0: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/main.nf
+Jul-10 10:25:04.826 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Jul-10 10:25:04.826 [main] DEBUG nextflow.Session - Session await
+Jul-10 10:25:05.591 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process BUILD_GBK (244) > jobId: 31022025; workDir: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work/fa/2bdf137bb8af56c713d4d8dc72ad13
+Jul-10 10:25:05.592 [Task submitter] INFO  nextflow.Session - [fa/2bdf13] Submitted process > BUILD_GBK (244)
+Jul-10 10:25:05.700 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process BUILD_GBK (21) > jobId: 31022027; workDir: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work/98/d3bf409e954bdccda38cc1db054ed8
+Jul-10 10:25:05.700 [Task submitter] INFO  nextflow.Session - [98/d3bf40] Submitted process > BUILD_GBK (21)
+Jul-10 10:25:14.662 [Task monitor] DEBUG n.executor.AbstractGridExecutor - Executor 'slurm' fetching queue global status
+Jul-10 10:25:54.667 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[jobId: 31022025; id: 2; name: BUILD_GBK (244); status: COMPLETED; exit: 1; error: -; workDir: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work/fa/2bdf137bb8af56c713d4d8dc72ad13 started: 1720603514796; exited: 2024-07-10T09:25:38.624728Z; ]
+Jul-10 10:25:54.671 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Jul-10 10:25:54.696 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=BUILD_GBK (244); work-dir=/hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work/fa/2bdf137bb8af56c713d4d8dc72ad13
+  error [nextflow.exception.ProcessFailedException]: Process `BUILD_GBK (244)` terminated with an error exit status (1)
+Jul-10 10:25:54.704 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[jobId: 31022027; id: 1; name: BUILD_GBK (21); status: COMPLETED; exit: 0; error: -; workDir: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work/98/d3bf409e954bdccda38cc1db054ed8 started: 1720603514814; exited: 2024-07-10T09:25:38.889593Z; ]
+Jul-10 10:25:54.709 [TaskFinalizer-1] INFO  nextflow.processor.TaskProcessor - [fa/2bdf13] NOTE: Process `BUILD_GBK (244)` terminated with an error exit status (1) -- Error is ignored
+Jul-10 10:25:54.786 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process `BUILD_GBK (21)` is unable to find [UnixPath]: `/hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work/98/d3bf409e954bdccda38cc1db054ed8/21.no_files.txt` (pattern: `21.no_files.txt`)
+Jul-10 10:25:55.008 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process BUILD_GBK > Skipping output binding because one or more optional files are missing: fileoutparam<3:1>
+Jul-10 10:25:55.100 [Actor Thread 4] DEBUG nextflow.container.SingularityCache - Singularity found local store for image=docker://quay.io/microbiome-informatics/antismash:7.1.0.1_2; path=/hps/nobackup/rdf/metagenomics/service-team/singularity-cache/quay.io-microbiome-informatics-antismash-7.1.0.1_2.img
+Jul-10 10:25:55.445 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process ANTISMASH (21) > jobId: 31022907; workDir: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work/22/044b4fa7ab8deed880a95553d91561
+Jul-10 10:25:55.446 [Task submitter] INFO  nextflow.Session - [22/044b4f] Submitted process > ANTISMASH (21)
+Jul-10 10:26:24.654 [Task monitor] DEBUG n.executor.AbstractGridExecutor - Executor 'slurm' fetching queue global status
+Jul-10 10:26:24.832 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[jobId: 31022907; id: 3; name: ANTISMASH (21); status: COMPLETED; exit: 0; error: -; workDir: /hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/work/22/044b4fa7ab8deed880a95553d91561 started: 1720603584813; exited: 2024-07-10T09:26:21.352984Z; ]
+Jul-10 10:26:24.869 [TaskFinalizer-3] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Jul-10 10:26:24.904 [main] DEBUG nextflow.Session - Session await > all processes finished
+Jul-10 10:26:34.651 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: slurm) - terminating tasks monitor poll loop
+Jul-10 10:26:34.652 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jul-10 10:26:34.668 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Jul-10 10:26:34.672 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+Jul-10 10:26:34.680 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=2; failedCount=1; ignoredCount=1; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=30s; failedDuration=39.9s; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=2; peakCpus=2; peakMemory=8 GB; ]
+Jul-10 10:26:34.680 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+Jul-10 10:26:34.683 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+Jul-10 10:26:36.394 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+Jul-10 10:26:36.779 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Jul-10 10:26:36.860 [main] INFO  org.pf4j.AbstractPluginManager - Stop plugin 'nf-validation@1.1.3'
+Jul-10 10:26:36.860 [main] DEBUG nextflow.plugin.BasePlugin - Plugin stopped nf-validation
+Jul-10 10:26:36.861 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Jul-10 10:26:36.862 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

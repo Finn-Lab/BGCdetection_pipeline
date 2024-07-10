@@ -77,8 +77,8 @@ def main(args=None):
     ## Find files
  
     
-    #RESULTS_BASE_DIRS = ["/nfs/public/services/metagenomics/results","/nfs/production/rdf/metagenomics/results/"]
-    RESULTS_BASE_DIRS = ["/hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/test/files/"]
+    RESULTS_BASE_DIRS = ["/nfs/public/services/metagenomics/results","/nfs/production/rdf/metagenomics/results/"]
+    # RESULTS_BASE_DIRS = ["/hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/test/files/"]
     # """ PROCESS WITHIN FILESYSTEM """
     for RESULTS_BASE_DIR in RESULTS_BASE_DIRS:
         flag = 0

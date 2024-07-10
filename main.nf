@@ -60,16 +60,12 @@ workflow  {
 
     SANNTIS(
         INTERPROSCAN.out.ips_tsv,
-        BUILD_GBK.out.gbk
+        BUILD_GBK.out.gbk 
         )
 
     GECCO_RUN(
         BUILD_GBK.out.gbk.map { prefix, gbk -> [prefix, gbk, []] }, []
     )
-
-    // CLEAN_AND_COMPRESS(
-        // BUILD_GBK.out.gbk + SANNTIS.out.gff
-    // )
 
 }
 
@@ -85,3 +81,4 @@ workflow  {
     THE END
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
+
