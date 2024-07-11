@@ -7,18 +7,18 @@ process BUILD_GBK{
     input:
     tuple val(prefix), val(result_directory), val(input_file)
     output:
-    tuple val(prefix), file("${prefix}.gbk"), emit: gbk, optional: true
     tuple val(prefix), file("${prefix}.gbk.gz"), emit: gbk_gz, optional: true
-    tuple val(prefix), file("${prefix}.faa"), emit: faa, optional: true
-    tuple val(prefix), file("${prefix}.no_files.txt"), emit: err_file, optional: true
+    tuple val(prefix), file("${prefix}.faa.gz"), emit: faa_gz, optional: true
     script:
     """
-    python ${baseDir}/bin/build_gbk.py -r ${result_directory} -i ${input_file} -o ${prefix}.gbk -f ${prefix}.faa.gz -b ${params.basedir_filesystem} || { echo "File not found"; exit 1; }
-    if [[ ! -f ${prefix}.gbk ]]; then
-        touch ${prefix}.no_files.txt
-        exit 1
-    fi
-    gunzip -c ${prefix}.faa.gz |sed 's/*//g' > ${prefix}.faa
+    python ${baseDir}/bin/build_gbk.py \\
+    -r ${result_directory} \\
+    -i ${input_file} -o ${prefix}.gbk \\
+    -f ${prefix}.faa.gz \\
+    -b ${params.basedir_filesystem} \\
+    -m ${params.min_lenght_contig} \\
+    || { echo "File not found"; exit 1; }
+    trap 'rm -f ${prefix}.gbk' EXIT
     gzip -c ${prefix}.gbk > ${prefix}.gbk.gz
     """
 }

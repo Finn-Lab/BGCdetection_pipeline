@@ -19,6 +19,7 @@ import gzip
 from Bio import SeqIO
 import tempfile
 import os,sys,json,shutil,glob
+from Bio.SeqRecord import SeqRecord
 
 def process_fasta_file(file_path):
 
@@ -30,6 +31,34 @@ def process_fasta_file(file_path):
             sequences = list(SeqIO.parse(handle, 'fasta'))
     
     return sequences
+
+def write_faa(records, output_faa_file):
+    """
+    Write a .faa file from a list of Biopython SeqRecord objects, removing all asterisks from
+    amino acid sequences and using protein_id as the header. The output file is compressed using gzip.
+
+    :param records: List of Biopython SeqRecord objects
+    :param output_faa_file: Path to the output .faa file
+    """
+    with gzip.open(output_faa_file, "wt") as output_handle:
+        for record in records:
+            for feature in record.features:
+                if feature.type == "CDS":
+                    # Extract the protein_id and translation
+                    _protein_id = feature.qualifiers.get("protein_id", ["unknown_protein"])
+                    _translation = feature.qualifiers.get("translation", [""])
+                    protein_id = _protein_id if type(_protein_id)==str else _protein_id[0]
+                    translation = _translation if type(_translation)==str else _translation[0]
+                    # Remove asterisks from the sequence
+                    cleaned_translation = translation.replace("*", "")
+                    # Create a new SeqRecord for the cleaned sequence
+                    seq_record = SeqRecord(
+                        seq=cleaned_translation,
+                        id=protein_id,
+                        description=""
+                    )
+                    # Write the sequence in FASTA format
+                    SeqIO.write(seq_record, output_handle, "fasta")
 
 def main(args=None):
 
@@ -79,16 +108,20 @@ def main(args=None):
         metavar="FILE",
         required=True,
     )
+    parser.add_argument(
+        "-m",
+        dest="min_le",
+        default=0,
+        type=int,
+        help="minimum contig lenght",
+        metavar="INT",
+        required=True,
+    )
 
     args = parser.parse_args(args)
 
-    # os.makedirs(os.path.dirname(os.path.dirname(args.out_gbk)),exist_ok=True)
-
     ## Find files
- 
-    
     RESULTS_BASE_DIRS = ["/"] if args.base_filesystem !='DEFAULT' else ["/nfs/public/services/metagenomics/results","/nfs/production/rdf/metagenomics/results/"]
-    # RESULTS_BASE_DIRS = ["/hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/test/files/"]
     # """ PROCESS WITHIN FILESYSTEM """
     for RESULTS_BASE_DIR in RESULTS_BASE_DIRS:
         flag = 0
@@ -116,8 +149,11 @@ def main(args=None):
     if not flag:
         print(f"Error: couldn't find approapiate files", file=sys.stderr)
         sys.exit(1)
-    fna = {rec.id:rec.seq for rec in process_fasta_file(nuc_file)} 
+    fna = {rec.id:rec.seq for rec in process_fasta_file(nuc_file) if len(rec.seq)>= int(args.min_le)} 
     faa = process_fasta_file(aa_file)
+
+    print(f"Contigs longer than {args.min_le}: {len(fna)}")
+    print(f"aa_file: {aa_file}\nnuc_file: {nuc_file}")
 
     feats = {}
 
@@ -151,7 +187,8 @@ def main(args=None):
     for cont,v in feats.items():
 
         sequence = fna.get(cont)
-
+        if sequence==None:
+            continue
         from Bio.SeqRecord import SeqRecord
         sequence_record = SeqRecord(sequence)    
         sequence_record.id = cont    
@@ -161,10 +198,15 @@ def main(args=None):
         sequence_record.features = v
         recs.append(sequence_record)
 
+    
+    if len(recs)==0:
+        print(f"Error: no contig longer than {args.min_le}", file=sys.stderr)
+        sys.exit(1)
+        
     with open(args.out_gbk, 'w') as h:
         SeqIO.write(recs, h, 'genbank')
-        
-    shutil.copy2(aa_file, args.out_faa)
+
+    write_faa(recs, args.out_faa)    
 
     print(f"Done!")
 

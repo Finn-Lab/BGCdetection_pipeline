@@ -24,14 +24,18 @@ process GECCO_RUN {
     def custom_model = model_dir ? "--model ${model_dir}" : ""
     def custom_hmm = hmm ? "--hmm ${hmm}" : ""
     """
+    trap 'find . -type f ! -name "${prefix}.clusters.gff.gz" ! -name ".*" -exec rm -rf {} +' EXIT
+
+    gunzip -c ${input} > temp_file.gbk
     gecco \\
         run \\
         $args \\
         -j $task.cpus \\
         -o ./ \\
-        -g ${input} \\
+        -g temp_file.gbk \\
         $custom_model \\
-        $custom_hmm
+        $custom_hmm \\
+        || { echo "gecco error"; exit 1; }
 
     touch ${prefix}.clusters.gff
     touch ${prefix}.clusters.testt

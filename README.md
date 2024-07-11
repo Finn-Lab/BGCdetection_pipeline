@@ -30,6 +30,12 @@ cd BGCdetection_pipeline
 
 ## Usage
 
+### Test
+
+```bash
+nextflow run main.nf -profile debug --input test/files/dummy_input.csv --outdir TEST_OUTPUT
+```
+
 ### Full Run
 
 To run the pipeline on a larger dataset, provide an appropriate configuration and input file:
@@ -42,6 +48,8 @@ nextflow run main.nf -profile ebi --input <path_to_input_csv> --outdir <output_d
 
 - `--input`: Path to the CSV file containing input information.
 - `--outdir`: Directory where the output files will be stored.
+#### Options
+- `--min_lenght_contig`: Defines the minimum length of contig to process. Increasing this value can speed up processing by excluding shorter contigs. Default = 3000.
 
 ## Configuration
 
@@ -51,6 +59,7 @@ The pipeline uses various configuration files to customize execution for differe
 - `conf/ebi_codon.config`: Specific configurations for the EBI Codon cluster.
 - `conf/modules.config`: Configuration for individual modules.
 - `conf/test.config`: Configuration for running minimal tests.
+
 
 ## Input Files
 

@@ -5,14 +5,17 @@ process ANTISMASH {
     container 'quay.io/microbiome-informatics/antismash:7.1.0.1_2'
 
     input:
-    tuple val(prefix), path(gbk)
+    tuple val(prefix), path(gbk_gz)
     path(antismash_db)
 
     output:
-    tuple val(prefix), path("${prefix}_antismash.gff.gz"), emit: gff
+    tuple val(prefix), path("${prefix}_antismash.gff.gz"), emit: gff, optional: true
 
     script:
     """
+    trap 'find . -type f ! -name "${prefix}_antismash.gff.gz" ! -name ".*" -exec rm -rf {} +' EXIT
+
+
     antismash \\
     -t bacteria \\
     -c ${task.cpus} \\
@@ -20,7 +23,8 @@ process ANTISMASH {
     --output-basename ${prefix} \\
     --genefinding-tool none \\
     --output-dir ${prefix}_results \\
-    ${gbk}
+    ${gbk_gz} || { echo "antismash error"; exit 1; }
+
 
     # To build the GFF3 file the scripts needs the regions.js file to be converted to json
     # In order to do that this process uses nodejs (using a patched version of the antismash container)

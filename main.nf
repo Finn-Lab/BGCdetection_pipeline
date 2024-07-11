@@ -62,22 +62,22 @@ workflow  {
         )
 
     ANTISMASH(
-        BUILD_GBK.out.gbk,
+        BUILD_GBK.out.gbk_gz,
         params.antismash_db
     )
 
     INTERPROSCAN(
-        BUILD_GBK.out.faa,
+        BUILD_GBK.out.faa_gz,
         interproscan_db
         )
 
     SANNTIS(
-        INTERPROSCAN.out.ips_tsv,
-        BUILD_GBK.out.gbk 
+        INTERPROSCAN.out.ips_tsv_gz,
+        BUILD_GBK.out.gbk_gz 
         )
 
     GECCO_RUN(
-        BUILD_GBK.out.gbk.map { prefix, gbk -> [prefix, gbk, []] }, []
+        BUILD_GBK.out.gbk_gz.map { prefix, gbk -> [prefix, gbk, []] }, []
     )
 
 }
