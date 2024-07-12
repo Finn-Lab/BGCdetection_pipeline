@@ -1,0 +1,10 @@
+name: BGCdetection_pipeline
+channels:
+  - defaults
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.9
+  - biopython
+  - nextflow
+  - singularity
