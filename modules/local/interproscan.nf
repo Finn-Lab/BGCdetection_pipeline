@@ -22,6 +22,9 @@ process INTERPROSCAN {
     output:
     tuple val(prefix), path('*.IPS.tsv.gz'), emit: ips_tsv_gz, optional: true
 
+    // Check if the output file exists in the publish directory
+    // checkIf: !file("${System.getenv('PUBLISH_DIR_INTERPROSCAN')}/${prefix}.IPS.tsv.gz").exists()
+
     script:
     """
     trap 'find . -type f ! -name "${prefix}.IPS.tsv.gz" ! -name ".*" -exec rm -rf {} +' EXIT

@@ -11,9 +11,11 @@ process GECCO_RUN {
     tuple val(prefix), path(input), path(hmm)
     path model_dir
 
-
     output:
     tuple val(prefix), path("*.clusters.gff.gz"), emit: gff_gz
+
+    // Check if the output file exists in the publish directory
+    // checkIf: !file("${System.getenv('PUBLISH_DIR_GECCO_RUN')}/${prefix}.clusters.gff.gz").exists()
 
     when:
     task.ext.when == null || task.ext.when

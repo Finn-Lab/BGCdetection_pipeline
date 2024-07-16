@@ -8,8 +8,12 @@ process SANNTIS {
     input:
     tuple val(prefix), path(ips_tsv_gz)
     tuple val(prefix), path(gbk_gz)
+
     output:
     tuple val(prefix), path("*_sanntis.gff.gz"), emit: gff_gz, optional: true
+    
+    // Check if the output file exists in the publish directory
+    // checkIf: !file("${System.getenv('PUBLISH_DIR_SANNTIS')}/${prefix}_sanntis.gff.gz").exists()
 
     """
     trap 'find . -type f ! -name "${prefix}_sanntis.gff.gz" ! -name ".*" -exec rm -rf {} +' EXIT

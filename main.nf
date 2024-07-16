@@ -24,7 +24,6 @@ include { INTERPROSCAN                                } from './modules/local/in
 include { SANNTIS                                    } from './modules/local/sanntis'
 
 // include { DOWNLOAD_DATABASES                         } from './subworkflows/download_databases'
-
 // /*
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //     IMPORT NF-CORE MODULES/SUBWORKFLOWS
@@ -48,38 +47,53 @@ interproscan_db = file(params.interproscan_db, checkIfExists: true)
 // Info required for completion email and summary
 
 workflow  {
+    // Capture the 'process' parameter from the command line
+params.process = params.process ? params.process.split(',') : []
 
-    // if (!file(params.input).exists()) {
-    //     error "Input CSV file not found: ${params.input}"
-    // }
+    // Check if the input file exists
+    if (!file(params.input).exists()) {
+        error "Input CSV file not found: ${params.input}"
+    }
+
     // Reading the input samplesheet
     assemblies_dirs = Channel.fromPath(params.input)
         .splitCsv(header: true)
         .map { row -> tuple(row.PREFIX, row.RESULT_DIRECTORY, row.INPUT_FILE_NAME) }
 
-    BUILD_GBK( 
-        assemblies_dirs 
+    // Define a helper function to check if a process should run
+    def shouldRun = { processName -> params.process.size() == 0 || params.process.contains(processName) }
+
+    // Conditional execution based on the 'process' parameter
+    if (shouldRun('BUILD_GBK')) {
+        BUILD_GBK(assemblies_dirs)
+    }
+
+    if (shouldRun('ANTISMASH')) {
+        ANTISMASH(
+            BUILD_GBK.out.gbk_gz,
+            params.antismash_db
         )
+    }
 
-    ANTISMASH(
-        BUILD_GBK.out.gbk_gz,
-        params.antismash_db
-    )
-
-    INTERPROSCAN(
-        BUILD_GBK.out.faa_gz,
-        interproscan_db
+    if (shouldRun('INTERPROSCAN')) {
+        INTERPROSCAN(
+            BUILD_GBK.out.faa_gz,
+            interproscan_db
         )
+    }
 
-    SANNTIS(
-        INTERPROSCAN.out.ips_tsv_gz,
-        BUILD_GBK.out.gbk_gz 
+    if (shouldRun('SANNTIS')) {
+        SANNTIS(
+            INTERPROSCAN.out.ips_tsv_gz,
+            BUILD_GBK.out.gbk_gz
         )
+    }
 
-    GECCO_RUN(
-        BUILD_GBK.out.gbk_gz.map { prefix, gbk -> [prefix, gbk, []] }, []
-    )
-
+    if (shouldRun('GECCO_RUN')) {
+        GECCO_RUN(
+            BUILD_GBK.out.gbk_gz.map { prefix, gbk -> [prefix, gbk, []] }, []
+        )
+    }
 }
 
 /*
@@ -88,10 +102,8 @@ workflow  {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     THE END
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
-

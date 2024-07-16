@@ -62,6 +62,7 @@ nextflow run main.nf -profile ebi --input <path_to_input_csv> --outdir <output_d
 - `--outdir`: Directory where the output files will be stored.
 #### Options
 - `--min_lenght_contig`: Defines the minimum length of contig to process. Increasing this value can speed up processing by excluding shorter contigs. Default = 3000.
+- `--process`: To run specific processes. Provide processes names separated by comma, e.g. `BUILD_GBK,ANTISMASH`. If the argument is not provided, all processes will be run.
 
 ## Configuration
 
@@ -151,4 +152,6 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 ## Acknowledgments
 
 This pipeline is a modification of [mettannotator](https://github.com/EBI-Metagenomics/mettannotator.git). Special thanks to the MGnify team for their work on the original pipeline.
+
+
 

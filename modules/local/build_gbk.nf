@@ -6,9 +6,14 @@ process BUILD_GBK{
     tag "${prefix}"
     input:
     tuple val(prefix), val(result_directory), val(input_file)
+
     output:
     tuple val(prefix), file("${prefix}.gbk.gz"), emit: gbk_gz, optional: true
     tuple val(prefix), file("${prefix}.faa.gz"), emit: faa_gz, optional: true
+
+    // Check if the output file exists in the publish directory
+    // checkIf: !file("${System.getenv('PUBLISH_DIR_BUILD_GBK')}/${prefix}.gbk.gz").exists()
+
     script:
     """
     python ${baseDir}/bin/build_gbk.py \\

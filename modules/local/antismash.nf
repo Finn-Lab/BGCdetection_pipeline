@@ -1,3 +1,4 @@
+
 process ANTISMASH {
 
     tag "${prefix}"
@@ -10,7 +11,10 @@ process ANTISMASH {
 
     output:
     tuple val(prefix), path("${prefix}_antismash.gff.gz"), emit: gff, optional: true
-
+    
+    // Check if the output file exists in the publish directory
+    // checkIf: !file("${System.getenv('PUBLISH_DIR_ANTISMASH')}/${prefix}_antismash.gff.gz").exists()
+    
     script:
     """
     trap 'find . -type f ! -name "${prefix}_antismash.gff.gz" ! -name ".*" -exec rm -rf {} +' EXIT
