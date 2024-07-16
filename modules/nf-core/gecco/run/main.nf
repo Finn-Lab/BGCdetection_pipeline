@@ -38,8 +38,7 @@ process GECCO_RUN {
         || { echo "gecco error"; exit 1; }
 
     touch ${prefix}.clusters.gff
-    touch ${prefix}.clusters.testt
     gecco convert clusters -i ./ --format gff
-    gzip -c ${prefix}.clusters.gff > ${prefix}.clusters.gff.gz
+    gzip -c temp_file.clusters.gff > ${prefix}.clusters.gff.gz
     """
 }

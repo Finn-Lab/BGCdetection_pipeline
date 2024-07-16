@@ -81,6 +81,36 @@ The input CSV file should contain the following columns:
 - `result_directory`: Directory containing the result files from MGnify pipeline. RESULT_DIRECTORY column of emg.ANALYSIS_JOB table. The workflow will look for these in the "/nfs/public/services/metagenomics/results" or "/nfs/production/rdf/metagenomics/results/" base directories in the LTS filesystem.
 - `analysis_input_file`: Input file for the analysis. INPUT_FILE_NAME column of emg.ANALYSIS_JOB table.
 
+The file can be created as follows:
+
+``` bash
+QUERY="SELECT RESULT_DIRECTORY,INPUT_FILE_NAME FROM ANALYSIS_JOB WHERE EXPERIMENT_TYPE_ID=4"
+
+# Output CSV file
+OUTPUT_CSV="pipeline_input.csv"
+
+# Temporary files
+TMP_CSV="tmp_output.csv"
+
+# Execute MySQL query and save output to a temporary CSV file
+mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME -e "$QUERY" --batch| awk 'BEGIN {FS="\t"; OFS=","} {print $1, $2}' > $TMP_CSV
+
+# Add PREFIX column with MD5 sum of RESULT_DIRECTORY
+awk 'BEGIN {FS=OFS=","} 
+NR==1 {print $0} 
+NR>1 { 
+  cmd="echo -n "$1" | md5sum | awk \x27{print $1}\x27"; 
+  cmd | getline md5; 
+  close(cmd); 
+  prefix=$2 "_" md5; 
+  print prefix, $0 
+}' $TMP_CSV > $OUTPUT_CSV
+
+# Clean up temporary files
+rm -f $TMP_CSV
+```
+
+
 This format is typically extracted from the EMG database, table `ANALYSIS_JOB`.
 
 Example:
