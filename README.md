@@ -77,9 +77,9 @@ The pipeline uses various configuration files to customize execution for differe
 
 The input CSV file should contain the following columns:
 
-- `prefix`: Prefix for the output files, typically formatted as `"{INPUT_FILE_NAME}_{md5(RESULT_DIRECTORY)}"`.
-- `result_directory`: Directory containing the result files from MGnify pipeline. RESULT_DIRECTORY column of emg.ANALYSIS_JOB table. The workflow will look for these in the "/nfs/public/services/metagenomics/results" or "/nfs/production/rdf/metagenomics/results/" base directories in the LTS filesystem.
-- `analysis_input_file`: Input file for the analysis. INPUT_FILE_NAME column of emg.ANALYSIS_JOB table.
+- `PREFIX`: Prefix for the output files, typically formatted as `"{INPUT_FILE_NAME}_{md5sum(RESULT_DIRECTORY)}"`.
+- `RESULT_DIRECTORY`: Directory containing the result files from MGnify pipeline. RESULT_DIRECTORY column of emg.ANALYSIS_JOB table. The workflow will look for these in the "/nfs/public/services/metagenomics/results" or "/nfs/production/rdf/metagenomics/results/" base directories in the LTS filesystem.
+- `INPUT_FILE_NAME`: Input file for the analysis. INPUT_FILE_NAME column of emg.ANALYSIS_JOB table.
 
 The file can be created as follows:
 
@@ -106,6 +106,7 @@ NR>1 {
   print prefix, $0 
 }' $TMP_CSV > $OUTPUT_CSV
 
+sed -i '1s/RESULT_DIRECTORY,INPUT_FILE_NAME/PREFIX,RESULT_DIRECTORY,INPUT_FILE_NAME/' $OUTPUT_CSV
 # Clean up temporary files
 rm -f $TMP_CSV
 ```
@@ -116,7 +117,7 @@ This format is typically extracted from the EMG database, table `ANALYSIS_JOB`.
 Example:
 
 ```csv
-prefix,result_directory,analysis_input_file
+PREFIX,RESULT_DIRECTORY,INPUT_FILE_NAMEPREFIX
 ERZ6863740_FASTA_5d9374cdf7a9f3b3ee89d860a60abe88,2024/03/ERP135446/version_5.0/ERZ686/000/ERZ6863740_FASTA,ERZ6863740_FASTA
 ERZ6864647_FASTA_65b16210f3b5b37490e5bd28c43d78f7,2024/03/ERP135446/version_5.0/ERZ686/007/ERZ6864647_FASTA,ERZ6864647_FASTA
 ```

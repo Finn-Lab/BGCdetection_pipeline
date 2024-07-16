@@ -55,7 +55,7 @@ workflow  {
     // Reading the input samplesheet
     assemblies_dirs = Channel.fromPath(params.input)
         .splitCsv(header: true)
-        .map { row -> tuple(row.prefix, row.result_directory, row.analysis_input_file) }
+        .map { row -> tuple(row.PREFIX, row.RESULT_DIRECTORY, row.INPUT_FILE_NAME) }
 
     BUILD_GBK( 
         assemblies_dirs 
