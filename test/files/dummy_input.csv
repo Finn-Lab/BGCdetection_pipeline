@@ -1,3 +1,2 @@
-PREFIX,RESULT_DIRECTORY,INPUT_FILE_NAME
-2414,ssBGC0001472,BGC0001472aa
-21xxa,/hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/test/files/BGC0001472,BGC0001473
+PREFIX,GBK_GZ
+BGC000147,/hps/nobackup/rdf/metagenomics/research-team/santiago/softw/BGCdetection_pipeline/test/files/BGC0001472/BGC000147.gbk.gz

@@ -18,9 +18,9 @@ nextflow.enable.dsl = 2
     IMPORT LOCAL MODULES/SUBWORKFLOWS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
-include { BUILD_GBK                                  } from './modules/local/build_gbk'
 include { ANTISMASH                                  } from './modules/local/antismash'
 include { INTERPROSCAN                                } from './modules/local/interproscan'
+include { EXTRACT_FAA_GZ                                } from './modules/local/extract_faa_gz'
 include { SANNTIS                                    } from './modules/local/sanntis'
 
 // include { DOWNLOAD_DATABASES                         } from './subworkflows/download_databases'
@@ -56,42 +56,41 @@ params.process = params.process ? params.process.split(',') : []
     }
 
     // Reading the input samplesheet
-    assemblies_dirs = Channel.fromPath(params.input)
+    assemblies = Channel.fromPath(params.input)
         .splitCsv(header: true)
-        .map { row -> tuple(row.PREFIX, row.RESULT_DIRECTORY, row.INPUT_FILE_NAME) }
+        .map { row -> tuple(row.PREFIX, row.GBK_GZ) }
 
     // Define a helper function to check if a process should run
     def shouldRun = { processName -> params.process.size() == 0 || params.process.contains(processName) }
 
     // Conditional execution based on the 'process' parameter
-    if (shouldRun('BUILD_GBK')) {
-        BUILD_GBK(assemblies_dirs)
-    }
-
     if (shouldRun('ANTISMASH')) {
         ANTISMASH(
-            BUILD_GBK.out.gbk_gz,
+            assemblies,
             params.antismash_db
         )
     }
 
     if (shouldRun('INTERPROSCAN')) {
+        EXTRACT_FAA_GZ(
+            assemblies
+        )
         INTERPROSCAN(
-            BUILD_GBK.out.faa_gz,
+            EXTRACT_FAA_GZ.out.faa_gz,
             interproscan_db
         )
     }
-
+    
     if (shouldRun('SANNTIS')) {
         SANNTIS(
             INTERPROSCAN.out.ips_tsv_gz,
-            BUILD_GBK.out.gbk_gz
+            assemblies
         )
     }
 
     if (shouldRun('GECCO_RUN')) {
         GECCO_RUN(
-            BUILD_GBK.out.gbk_gz.map { prefix, gbk -> [prefix, gbk, []] }, []
+            assemblies.map { prefix, gbk -> [prefix, gbk, []] }, []
         )
     }
 }

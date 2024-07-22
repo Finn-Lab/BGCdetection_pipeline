@@ -9,6 +9,7 @@ This repository contains a Nextflow pipeline for detecting Biosynthetic Gene Clu
 - [Configuration](#configuration)
 - [Input Files](#input-files)
 - [Output Files](#output-files)
+- [Output Directory Structure](#output-directory-structure)
 - [Pipeline Structure](#pipeline-structure)
 - [Contributing](#contributing)
 - [License](#license)
@@ -39,7 +40,6 @@ cd BGCdetection_pipeline
     conda activate BGCdetection_pipeline
     ```
 
-
 ## Usage
 
 ### Test
@@ -61,7 +61,6 @@ nextflow run main.nf -profile ebi --input <path_to_input_csv> --outdir <output_d
 - `--input`: Path to the CSV file containing input information.
 - `--outdir`: Directory where the output files will be stored.
 #### Options
-- `--min_lenght_contig`: Defines the minimum length of contig to process. Increasing this value can speed up processing by excluding shorter contigs. Default = 3000.
 - `--process`: To run specific processes. Provide processes names separated by comma, e.g. `BUILD_GBK,ANTISMASH`. If the argument is not provided, all processes will be run.
 
 ## Configuration
@@ -78,49 +77,15 @@ The pipeline uses various configuration files to customize execution for differe
 
 The input CSV file should contain the following columns:
 
-- `PREFIX`: Prefix for the output files, typically formatted as `"{INPUT_FILE_NAME}_{md5sum(RESULT_DIRECTORY)}"`.
-- `RESULT_DIRECTORY`: Directory containing the result files from MGnify pipeline. RESULT_DIRECTORY column of emg.ANALYSIS_JOB table. The workflow will look for these in the "/nfs/public/services/metagenomics/results" or "/nfs/production/rdf/metagenomics/results/" base directories in the LTS filesystem.
-- `INPUT_FILE_NAME`: Input file for the analysis. INPUT_FILE_NAME column of emg.ANALYSIS_JOB table.
-
-The file can be created as follows:
-
-``` bash
-QUERY="SELECT RESULT_DIRECTORY,INPUT_FILE_NAME FROM ANALYSIS_JOB WHERE EXPERIMENT_TYPE_ID=4"
-
-# Output CSV file
-OUTPUT_CSV="pipeline_input.csv"
-
-# Temporary files
-TMP_CSV="tmp_output.csv"
-
-# Execute MySQL query and save output to a temporary CSV file
-mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME -e "$QUERY" --batch| awk 'BEGIN {FS="\t"; OFS=","} {print $1, $2}' > $TMP_CSV
-
-# Add PREFIX column with MD5 sum of RESULT_DIRECTORY
-awk 'BEGIN {FS=OFS=","} 
-NR==1 {print $0} 
-NR>1 { 
-  cmd="echo -n "$1" | md5sum | awk \x27{print $1}\x27"; 
-  cmd | getline md5; 
-  close(cmd); 
-  prefix=$2 "_" md5; 
-  print prefix, $0 
-}' $TMP_CSV > $OUTPUT_CSV
-
-sed -i '1s/RESULT_DIRECTORY,INPUT_FILE_NAME/PREFIX,RESULT_DIRECTORY,INPUT_FILE_NAME/' $OUTPUT_CSV
-# Clean up temporary files
-rm -f $TMP_CSV
-```
-
-
-This format is typically extracted from the EMG database, table `ANALYSIS_JOB`.
+- `PREFIX`: Prefix for the output files, typically formatted as `"{ASSEMBLY_FILE_NAME}_{md5sum(RESULT_DIRECTORY)}"`.
+- `GBK_GZ`: Input file for the analysis (Absolute path). Genebank file with protein and nucleotide sequneces. Best if output of [assembly_extraction_pipeline](https://github.com/Finn-Lab/BGCdetection_pipeline.git).
 
 Example:
 
 ```csv
-PREFIX,RESULT_DIRECTORY,INPUT_FILE_NAMEPREFIX
-ERZ6863740_FASTA_5d9374cdf7a9f3b3ee89d860a60abe88,2024/03/ERP135446/version_5.0/ERZ686/000/ERZ6863740_FASTA,ERZ6863740_FASTA
-ERZ6864647_FASTA_65b16210f3b5b37490e5bd28c43d78f7,2024/03/ERP135446/version_5.0/ERZ686/007/ERZ6864647_FASTA,ERZ6864647_FASTA
+PREFIX,GBK_GZ
+ERZ6863740_FASTA_5d9374cdf7a9f3b3ee89d860a60abe88,/home/User/ERZ6863740_FASTA/ERZ6863740_FASTA.gbk.gz
+ERZ9863740_FASTA_9d9374cdf7a9f3b3ee89d860a60abe88,/home/UserERZ6863740_FASTA/ERZ9863740_FASTA.gbk.gz
 ```
 
 ## Output Files
@@ -128,14 +93,25 @@ ERZ6864647_FASTA_65b16210f3b5b37490e5bd28c43d78f7,2024/03/ERP135446/version_5.0/
 The pipeline generates various output files in the specified output directory:
 
 - GFF files with BGC annotations from antiSMASH, GECCO, and SanntiS.
-- GenBank format files for further analysis.
 - TSV files with InterProScan results.
+
+## Output Directory Structure
+
+The output directory structure is defined using Nextflow's `publishDir` directive. The output GenBank files will be organized in subdirectories based on the prefix:
+
+```
+<outdir>/
+  ├── <last_two_characters_of_prefix>/
+  │   └── <full_prefix>/
+  │       └── <analysis>/
+  │           └── *.gff.gz|*.IPS.tsv.gz
+```
 
 ## Pipeline Structure
 
 The pipeline is composed of several Nextflow processes and modules:
 
-- **BUILD_GBK**: Generates GenBank files from input FASTA files.
+- **EXTRACT_FAA_GZ**: Generates protein FASTA file to be used in interproscan.
 - **ANTISMASH**: Runs antiSMASH for BGC detection.
 - **INTERPROSCAN**: Runs InterProScan for protein domain prediction.
 - **SANNTIS**: Annotates BGCs using neural networks trained on InterPro signatures.
