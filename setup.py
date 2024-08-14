@@ -20,7 +20,7 @@ setup(
     description='Module for Extract BGC data from cold storage filesystem EMBL-EBI',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/Finn-Lab/assembly_extraction_pipeline',
+    url='https://github.com/Finn-Lab/BGCdetection_pipeline',
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
