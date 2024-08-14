@@ -38,9 +38,9 @@ process GECCO_RUN {
         $custom_model \\
         $custom_hmm \\
         || { echo "gecco error"; exit 1; }
-
+    version=\$(echo \$(gecco --version | sed 's/^gecco //' ))
     touch ${prefix}.clusters.gff
     gecco convert clusters -i ./ --format gff
-    gzip -c temp_file.clusters.gff > ${prefix}.clusters.gff.gz
+    gzip -c temp_file.clusters.gff > ${prefix}_gecco_\${version}.clusters.gff.gz
     """
 }

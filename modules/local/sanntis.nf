@@ -25,7 +25,9 @@ process SANNTIS {
     --cpu ${task.cpus} \\
     temp_file.gbk \\
     || { echo "sanntis error"; exit 1; }
+    
+    version=\$(sanntis --version | sed "s/SanntiS\\ //g")
 
-    gzip -c ${prefix}_sanntis.gff > ${prefix}_sanntis.gff.gz
+    gzip -c ${prefix}_sanntis.gff > ${prefix}_sanntis_\${version}.gff.gz
     """
 }

@@ -37,10 +37,11 @@ process ANTISMASH {
 
     node ${prefix}_results/regions.js
 
+    as_version=\$(echo \$(antismash --version | sed 's/^antiSMASH //' ))
     antismash_to_gff.py \\
-        -r regions.json -a \$(echo \$(antismash --version | sed 's/^antiSMASH //' )) \\
+        -r regions.json -a \${as_version} \\
         -o ${prefix}_antismash.gff
         
-    gzip -c ${prefix}_antismash.gff > ${prefix}_antismash.gff.gz
+    gzip -c ${prefix}_antismash.gff > ${prefix}_antismash_\${as_version}.gff.gz
     """
 }

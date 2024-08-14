@@ -40,6 +40,7 @@ process INTERPROSCAN {
     -o ${prefix}.IPS.tsv \\
     || { echo "IPS error"; exit 1; }
 
-    gzip -c ${prefix}.IPS.tsv > ${prefix}.IPS.tsv.gz
+    version=\$(interproscan.sh --version | grep -o "InterProScan version [0-9.-]*" | sed "s/InterProScan version //")
+    gzip -c ${prefix}.IPS.tsv > ${prefix}_interproscan_\${version}.IPS.tsv.gz
     """
 }
