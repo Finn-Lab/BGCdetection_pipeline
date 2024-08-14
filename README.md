@@ -22,23 +22,8 @@ This repository contains a Nextflow pipeline for detecting Biosynthetic Gene Clu
 ```bash
 git clone https://github.com/Finn-Lab/BGCdetection_pipeline.git
 cd BGCdetection_pipeline
+python -m pip install -e .
 ```
-
-### Prerequisites
-
-- Docker or Singularity, Nextflow, and Biopython, which can be installed the provided `environment.yml` file for setting up a conda environment. Follow these steps to create and activate the environment:
-
-  1. **Install Conda**: If you do not have conda installed, download and install it from [Conda's official site](https://docs.conda.io/projects/conda/en/latest/user-guide/install/).
-
-  2. **Create the Environment**:
-    ```bash
-    conda env create -f environment.yml
-    ```
-
-  3. **Activate the Environment**:
-    ```bash
-    conda activate BGCdetection_pipeline
-    ```
 
 ## Usage
 
