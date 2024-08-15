@@ -7,7 +7,7 @@ setup(
     install_requires=[
         'biopython',
         'nextflow',
-        # 'singularity',
+        'singularity',
     ],
     entry_points={
         'console_scripts': [
