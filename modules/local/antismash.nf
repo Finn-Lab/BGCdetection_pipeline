@@ -10,14 +10,14 @@ process ANTISMASH {
     path(antismash_db)
 
     output:
-    tuple val(prefix), path("${prefix}_antismash.gff.gz"), emit: gff, optional: true
+    tuple val(prefix), path("${prefix}_antismash_*.gff.gz"), emit: gff, optional: true
     
     // Check if the output file exists in the publish directory
     // checkIf: !file("${System.getenv('PUBLISH_DIR_ANTISMASH')}/${prefix}_antismash.gff.gz").exists()
-    
+
     script:
     """
-    trap 'find . -type f ! -name "${prefix}_antismash.gff.gz" ! -name ".*" -exec rm -rf {} +' EXIT
+    ## trap 'find . -type f ! -name "${prefix}_antismash_*.gff.gz" ! -name ".*" -exec rm -rf {} +' EXIT
 
 
     antismash \\

@@ -1,4 +1,3 @@
-# BGC Detection Pipeline
 
 This repository contains a Nextflow pipeline for detecting Biosynthetic Gene Clusters (BGCs) in metagenomic assemblies using the tools antiSMASH, GECCO, and SanntiS. This pipeline is designed to be run on EBI_SLURM.
 
