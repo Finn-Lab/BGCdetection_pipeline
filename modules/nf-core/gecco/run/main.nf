@@ -26,7 +26,7 @@ process GECCO_RUN {
     def custom_model = model_dir ? "--model ${model_dir}" : ""
     def custom_hmm = hmm ? "--hmm ${hmm}" : ""
     """
-    ## trap 'find . -type f ! -name "${prefix}.clusters.gff.gz" ! -name ".*" -exec rm -rf {} +' EXIT
+    trap 'find . -type f ! -name "${prefix}_gecco_*.gff.gz" ! -name ".*" -exec rm -rf {} +' EXIT
 
     gunzip -c ${input} > temp_file.gbk
     gecco \\

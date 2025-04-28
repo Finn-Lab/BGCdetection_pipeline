@@ -17,7 +17,7 @@ process ANTISMASH {
 
     script:
     """
-    ## trap 'find . -type f ! -name "${prefix}_antismash_*.gff.gz" ! -name ".*" -exec rm -rf {} +' EXIT
+    trap 'find . -type f ! -name "${prefix}_antismash_*.gff.gz" ! -name ".*" -exec rm -rf {} +' EXIT
 
 
     antismash \\

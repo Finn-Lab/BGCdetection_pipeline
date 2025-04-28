@@ -16,7 +16,7 @@ process SANNTIS {
     // checkIf: !file("${System.getenv('PUBLISH_DIR_SANNTIS')}/${prefix}_sanntis.gff.gz").exists()
 
     """
-    ## trap 'find . -type f ! -name "${prefix}_sanntis_*.gff.gz" ! -name ".*" -exec rm -rf {} +' EXIT
+    trap 'find . -type f ! -name "${prefix}_sanntis_*.gff.gz" ! -name ".*" -exec rm -rf {} +' EXIT
     gunzip -c ${gbk_gz} > temp_file.gbk
     gunzip -c ${ips_tsv_gz} > temp_file.ips.tsv
     sanntis \\

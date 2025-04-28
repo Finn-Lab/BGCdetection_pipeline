@@ -27,7 +27,7 @@ process INTERPROSCAN {
 
     script:
     """
-    ## trap 'find . -type f ! -name "${prefix}.IPS.tsv.gz" ! -name ".*" -exec rm -rf {} +' EXIT
+    trap 'find . -type f ! -name "${prefix}_interproscan_*IPS.tsv.gz" ! -name ".*" -exec rm -rf {} +' EXIT
     gunzip -c ${faa_gz} |sed 's/*//' > temp.fasta
 
     interproscan.sh \\
